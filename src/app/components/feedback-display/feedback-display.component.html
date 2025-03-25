@@ -1,0 +1,24 @@
+<!-- <div class="block m-2 mb-4 px-1 border-2 border-background">
+    
+</div> -->
+<div class="bg-white shadow-lg mx-5 rounded-lg max-w-full overflow-hidden">
+  <div class="px-6 py-4">
+    <h2 class="mb-2 font-bold text-gray-800 text-xl">{{ feedback?.title }}</h2>
+    <p class="mb-4 text-gray-600 text-sm">{{ feedback?.description }}</p>
+    <div class="text-gray-500 text-sm">
+      <p><span class="font-semibold">Company:</span> {{ feedback?.company }}</p>
+      <p>
+        <span class="font-semibold">Managers:</span>
+        {{ feedback?.managers?.join(", ") }}
+      </p>
+      <p>
+        <span class="font-semibold">Created At:</span>
+        {{ feedback?.created_at }}
+      </p>
+      <p>
+        <span class="font-semibold">Created By:</span>
+        {{ feedback?.created_by }}
+      </p>
+    </div>
+  </div>
+</div>

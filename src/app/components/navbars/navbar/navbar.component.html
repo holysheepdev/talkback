@@ -1,0 +1,45 @@
+<nav
+  class="items-center grid grid-cols-3 bg-primary rounded-b-[3px] w-full h-[48px]"
+>
+  <!-- Landing Navbar -->
+  @if(isLoggedIn){
+
+  <!-- Col 1 Navbar -->
+  <!-- Logo -->
+  <div class="px-3">
+    <img src="Logo.svg" alt="Talkback" class="size-11" />
+    <!-- <img src="https://placehold.co/100/svg" alt="Talkback" /> -->
+  </div>
+
+  <!-- Col 2 Navbar -->
+  <div class="flex justify-evenly px-3">
+    <button
+      mat-button
+      class="px-1.5 text-base"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+    >
+      My Feedbacks
+    </button>
+    <button
+      mat-button
+      class="px-1.5 text-base"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+    >
+      All Feedbacks
+    </button>
+  </div>
+  <!-- Col 3 Navbar -->
+  <div class="flex justify-end px-3">
+    <button
+      mat-button
+      class="px-1.5 text-base"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+    >
+      My Details (no target)
+    </button>
+  </div>
+  }
+</nav>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingNavbarComponent } from './landing-navbar.component';
+import { FeedbackDisplayComponent } from './feedback-display.component';
 
-describe('LandingNavbarComponent', () => {
-  let component: LandingNavbarComponent;
-  let fixture: ComponentFixture<LandingNavbarComponent>;
+describe('FeedbackDisplayComponent', () => {
+  let component: FeedbackDisplayComponent;
+  let fixture: ComponentFixture<FeedbackDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LandingNavbarComponent]
+      imports: [FeedbackDisplayComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LandingNavbarComponent);
+    fixture = TestBed.createComponent(FeedbackDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

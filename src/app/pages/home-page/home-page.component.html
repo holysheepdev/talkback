@@ -1,0 +1,22 @@
+<div class="mx-auto px-4 pt-[6vh] container">
+  <!-- Positive quote -->
+  <p class="font-(--font-primary) font-medium text-[#f1eeff] text-4xl italic">
+    {{ displayQuote }}
+  </p>
+
+  <!-- Recent reviews -->
+  <div
+    class="block place-self-center bg-primary/90 sm:mt-7 md:mt-28 pb-2.5 rounded-4xl w-2/3 h-fit min-h-10 size-2"
+  >
+    <h1 class="p-5 text-2xl">Your recent feedbacks</h1>
+    <!-- Feedback display list -->
+    <!-- Display top 5 feedbacks -->
+    <app-feedback-display></app-feedback-display>
+
+    @for (feedback of feedbacks; track $index) {
+    <div class="py-1">
+      <app-feedback-display [feedback]="feedback"></app-feedback-display>
+    </div>
+    }
+  </div>
+</div>

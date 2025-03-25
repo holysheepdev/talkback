@@ -1,0 +1,10 @@
+// @import "src/styles.scss";
+@use '@angular/material' as mat;
+
+
+nav button {
+    @include mat.button-overrides((
+        text-label-text-color: rgb(62, 53, 66),
+    ));
+}
+

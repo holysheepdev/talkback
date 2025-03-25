@@ -1,4 +1,26 @@
+
+// // Custom Theming for Angular Material
+// // For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
 @import "tailwindcss";
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$magenta-palette,
+      tertiary: mat.$violet-palette,
+    ),
+    typography: Roboto,
+     density: 0,
+  ));
+}
+
+:root {
+    @include mat.button-overrides((
+        text-label-text-color: black,
+    ));
+}
 
 @theme {
     --color-background: #3a2d46;
@@ -22,3 +44,5 @@ body {
     margin: 0;
     background-color: var(--color-background);
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
