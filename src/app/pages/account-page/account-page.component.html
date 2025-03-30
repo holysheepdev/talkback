@@ -1,0 +1,97 @@
+<div class="flex justify-center items-center bg-background min-h-screen">
+  <form
+    [formGroup]="updateProfileForm"
+    (ngSubmit)="updateProfile()"
+    class="space-y-4 bg-background3/4 shadow-md shadow-pink-50 p-6 border-2 border-neutral-300 rounded-lg w-full max-w-md align-middle"
+  >
+    <div>
+      <label for="email" class="block font-medium text-gray-300 text-sm"
+        >Email</label
+      >
+      <input
+        id="email"
+        type="text"
+        [value]="session?.user?.email ?? 'error'"
+        disabled
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <!-- UserName -->
+    <div>
+      <label for="username" class="block font-medium text-gray-300 text-sm"
+        >Username</label
+      >
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <!-- Full name -->
+    <div>
+      <label for="full_name" class="block font-medium text-gray-300 text-sm"
+        >Full Name</label
+      >
+      <input
+        formControlName="full_name"
+        id="full_name"
+        type="text"
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <!-- Company name -->
+    <div>
+      <label for="company" class="block font-medium text-gray-300 text-sm"
+        >Company</label
+      >
+      <input
+        formControlName="company"
+        id="company"
+        type="text"
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <div>
+      <!-- Job title -->
+      <label for="job_title" class="block font-medium text-gray-300 text-sm"
+        >Job Title</label
+      >
+      <input
+        formControlName="job_title"
+        id="job_title"
+        type="text"
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <div>
+      <label for="website" class="block font-medium text-gray-300 text-sm"
+        >Website</label
+      >
+      <input
+        formControlName="website"
+        id="website"
+        type="url"
+        class="block bg-gray-700 shadow-sm mt-1 border-gray-600 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="flex justify-center bg-indigo-600 hover:bg-indigo-700 shadow-sm px-4 py-2 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-full font-medium text-white text-sm"
+        [disabled]="loading"
+      >
+        {{ loading ? "Loading ..." : "Update" }}
+      </button>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="flex justify-center bg-gray-700 hover:bg-gray-600 shadow-sm px-4 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-full font-medium text-gray-300 text-sm"
+        (click)="signOut()"
+      >
+        Sign Out
+      </button>
+    </div>
+  </form>
+</div>

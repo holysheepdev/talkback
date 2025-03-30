@@ -69,6 +69,8 @@ export class HomePageComponent implements OnInit {
     if (data) {
       this.feedbacks = data;
     }
+
+    console.log(this.supabase.session);
   }
 
   setName(quote: string, name?: string): string {

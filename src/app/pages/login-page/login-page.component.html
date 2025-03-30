@@ -1,0 +1,50 @@
+<!-- This is the login page component template -->
+<div class="flex justify-center items-center bg-background min-h-screen">
+  <div
+    class="bg-background3/4 shadow-md shadow-pink-50 p-6 border-2 border-neutral-300 rounded-lg w-full max-w-md"
+  >
+    <h1 class="mb-4 font-bold text-white text-2xl text-center">Log in</h1>
+    <p class="mb-6 text-gray-200 text-sm text-center">
+      Sign in via magic link with your email below
+    </p>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label for="email" class="block font-medium text-gray-400 text-sm">
+          Email
+        </label>
+        <input
+          id="email"
+          formControlName="email"
+          class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 `w3"
+          type="email"
+          placeholder="Your email"
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="bg-transparent hover:bg-gray-950/10 shadow px-4 py-2 border-``` rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full font-medium text-white"
+          [disabled]="loading"
+        >
+          {{ loading ? "Loading..." : "Send Magic Link" }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- DEGBUG -->
+  <!-- refresh session button -->
+  <!-- <button -->
+  <!-- class="top-4 right-4 absolute bg-blue-500 hover:bg-blue-600 shadow px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium text-white" -->
+  <!-- (click)="onLog()" -->
+  <!-- > -->
+  <!-- Refresh Session -->
+  <!-- </button> -->
+  <!-- sign out button -->
+  <!-- <button -->
+  <!-- class="top-4 right-4 absolute bg-red-500 hover:bg-red-600 shadow px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 font-medium text-white" -->
+  <!-- (click)="onSignOut()" -->
+  <!-- > -->
+  <!-- Sign Out -->
+  <!-- </button> -->
+</div>
