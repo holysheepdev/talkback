@@ -6,7 +6,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-add-feedback-page',
