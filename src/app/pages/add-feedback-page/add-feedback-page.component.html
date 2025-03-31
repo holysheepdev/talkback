@@ -1,86 +1,63 @@
 <!-- Add feedback page -->
-<div class="flex justify-center items-center bg-background min-h-screen">
+<div class="flex justify-center items-center bg-background w-full min-h-screen">
   <form
     [formGroup]="feedbackForm"
     (ngSubmit)="submitFeedback()"
-    class="space-y-2 bg-background3/4 shadow-md shadow-pink-50 p-6 border-2 border-neutral-300 rounded-lg w-full max-w-md align-middle"
+    class="space-y-2 bg-background3/4 shadow-md shadow-pink-50 p-4 border-2 border-neutral-300 rounded-lg w-full max-w-2/3 align-middle"
   >
     <h1 class="text-white text-3xl">Submit Feedback</h1>
-    <div>
-      <label for="email" class="block font-medium text-gray-400 text-sm"
-        >Email</label
-      >
+
+    <!-- Stay anonymous -->
+    <div class="flex items-center">
       <input
-        id="email"
-        type="text"
-        [value]="session?.user?.email ?? 'error'"
-        disabled
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+        type="checkbox"
+        formControlName="anonymous"
+        class="mr-2 border-gray-300 rounded focus:ring-blue-500 text-blue-500"
       />
-    </div>
-    <!-- UserName -->
-    <div>
-      <label for="username" class="block font-medium text-gray-400 text-sm"
-        >Username</label
+      <label for="anonymous" class="text-gray-300 text-sm"
+        >Stay Anonymous</label
       >
-      <input
-        formControlName="username"
-        id="username"
-        type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
-      />
     </div>
-    <!-- Full name -->
-    <div>
-      <label for="full_name" class="block font-medium text-gray-400 text-sm"
-        >Full Name</label
-      >
-      <input
-        formControlName="full_name"
-        id="full_name"
-        type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
-      />
-    </div>
+
     <!-- Company name -->
     <div>
-      <label for="company" class="block font-medium text-gray-400 text-sm"
+      <label for="company" class="block font-medium text-gray-300 text-sm"
         >Company</label
       >
       <input
         formControlName="company"
         id="company"
         type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
       />
     </div>
     <div>
       <!-- Job title -->
-      <label for="job_title" class="block font-medium text-gray-400 text-sm"
+      <label for="job_title" class="block font-medium text-gray-300 text-sm"
         >Job Title</label
       >
       <input
         formControlName="job_title"
         id="job_title"
         type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
       />
     </div>
     <div>
-      <label for="website" class="block font-medium text-gray-400 text-sm"
+      <label for="website" class="block font-medium text-gray-300 text-sm"
         >Website</label
       >
       <input
         formControlName="website"
         id="website"
         type="url"
-        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
       />
     </div>
     <div>
       <button
         type="submit"
-        class="flex justify-center bg-transparent hover:bg-gray-950/10 shadow px-4 py-2 border-``` rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full font-medium text-white"
+        class="flex justify-center bg-transparent hover:bg-gray-950/10 shadow px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full font-medium text-white"
         [disabled]="loading"
       >
         {{ loading ? "Loading ..." : "Update" }}

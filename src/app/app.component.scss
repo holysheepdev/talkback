@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+:root {
+    @include mat.checkbox-overrides((
+        label-text-color: #d1d5dc,
+    ));
+}

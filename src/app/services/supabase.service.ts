@@ -77,7 +77,7 @@ export class SupabaseService implements OnInit {
   signIn(email: string) {
     return this.supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: 'http://localhost:4200/' },
+      // options: { emailRedirectTo: 'http://localhost:4200/' },
     });
   }
   signOut() {
