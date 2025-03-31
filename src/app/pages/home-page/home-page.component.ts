@@ -3,6 +3,7 @@ import * as quotes from '../../utils/quotes.json';
 import { FeedbackDisplayComponent } from '../../components/feedback-display/feedback-display.component';
 import { Feedback } from '../../model/Feedback';
 import { SupabaseService } from '../../services/supabase.service';
+import { RouterModule } from '@angular/router';
 
 export const sampleFeedbacks: Feedback[] = [
   {
@@ -47,7 +48,7 @@ export const sampleFeedbacks: Feedback[] = [
 
 @Component({
   selector: 'app-home-page',
-  imports: [FeedbackDisplayComponent],
+  imports: [FeedbackDisplayComponent, RouterModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

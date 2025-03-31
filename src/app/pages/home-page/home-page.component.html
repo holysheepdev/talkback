@@ -4,6 +4,18 @@
     {{ displayQuote }}
   </p>
 
+  <!-- Add Feedback call to action -->
+  <div class="mt-5">
+    <button
+      mat-button
+      class="bg-primary hover:bg-primary/80 px-4 py-2 rounded-full text-white"
+      [routerLink]="['/add-feedback']"
+      routerLinkActive="router-link-active"
+    >
+      Add Feedback
+    </button>
+  </div>
+
   <!-- Recent reviews -->
   <div
     class="block place-self-center bg-primary/90 sm:mt-7 md:mt-28 pb-2.5 rounded-4xl w-2/3 h-fit min-h-10 size-2"
