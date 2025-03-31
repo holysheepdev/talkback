@@ -1,52 +1,75 @@
-<nav
-  class="items-center grid grid-cols-3 bg-primary rounded-b-[3px] w-full h-[48px]"
->
-  <!-- Col 1 Navbar -->
-  <!-- Logo -->
-  <div class="px-3">
-    <img src="Logo.svg" alt="Talkback" class="size-11" />
-    <!-- <img src="https://placehold.co/100/svg" alt="Talkback" /> -->
+<nav class="bg-primary rounded-b-[3px] w-full">
+  <!-- Top bar: Logo and Mobile Toggle -->
+  <div class="flex justify-between items-center px-4 h-12">
+    <!-- Logo -->
+    <div>
+      <img src="LogoLong.svg" alt="Talkback" class="w-auto h-8" />
+    </div>
+    <!-- Mobile menu toggle button (visible on small screens only) -->
+    <div class="md:hidden">
+      <button (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+        <svg
+          class="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
-
-  <!-- Col 2 Navbar -->
-  <div class="flex justify-evenly px-3">
-    <button
-      mat-button
-      class="px-1.5 text-base"
-      [routerLink]="['/']"
-      routerLinkActive="router-link-active"
-    >
-      My Feedbacks
-    </button>
-    <button
-      mat-button
-      class="px-1.5 text-base"
-      [routerLink]="['/']"
-      routerLinkActive="router-link-active"
-    >
-      All Feedbacks
-    </button>
-  </div>
-  <!-- Col 3 Navbar -->
-  <div class="flex justify-end px-3">
-    @if (isLoggedIn){
-    <button
-      mat-button
-      class="px-1.5 text-base"
-      [routerLink]="['/account']"
-      routerLinkActive="router-link-active"
-    >
-      My Details
-    </button>
-    } @else {
-    <button
-      mat-button
-      class="px-1.5 text-base"
-      [routerLink]="['/signin']"
-      routerLinkActive="router-link-active"
-    >
-      Sign in!
-    </button>
-    }
+  <!-- Navigation links -->
+  <div
+    [ngClass]="{ block: mobileMenuOpen, hidden: !mobileMenuOpen }"
+    class="md:flex md:justify-between md:items-center px-4 md:px-6 pb-4 md:pb-0"
+  >
+    <!-- Center Links -->
+    <div class="flex md:flex-row flex-col md:space-x-6">
+      <button
+        mat-button
+        class="py-2 text-white text-base"
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+      >
+        My Feedbacks
+      </button>
+      <button
+        mat-button
+        class="py-2 text-white text-base"
+        [routerLink]="['/dashboard']"
+        routerLinkActive="router-link-active"
+      >
+        All Feedbacks
+      </button>
+    </div>
+    <!-- Right Link -->
+    <div class="mt-2 md:mt-0">
+      <ng-container *ngIf="isLoggedIn; else signIn">
+        <button
+          mat-button
+          class="py-2 text-white text-base"
+          [routerLink]="['/account']"
+          routerLinkActive="router-link-active"
+        >
+          My Details
+        </button>
+      </ng-container>
+      <ng-template #signIn>
+        <button
+          mat-button
+          class="py-2 text-white text-base"
+          [routerLink]="['/signin']"
+          routerLinkActive="router-link-active"
+        >
+          Sign in!
+        </button>
+      </ng-template>
+    </div>
   </div>
 </nav>

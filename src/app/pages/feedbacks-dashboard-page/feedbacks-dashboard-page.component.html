@@ -1,0 +1,67 @@
+<div class="mx-auto px-4 pt-[6vh] container">
+  <!-- Page Title -->
+  <h1 class="mb-6 font-bold text-white text-3xl text-center">
+    Feedback Dashboard
+  </h1>
+
+  <!-- Filters Section -->
+  <div class="bg-primary/90 mb-6 p-4 rounded-lg">
+    <h2 class="mb-3 text-white text-xl">Filters</h2>
+    <div class="gap-4 grid grid-cols-1 sm:grid-cols-3">
+      <!-- Filter by Company -->
+      <input
+        type="text"
+        placeholder="Company"
+        [(ngModel)]="filterCompany"
+        class="p-2 border border-gray-300 rounded"
+      />
+      <!-- Filter by Created By (Person) -->
+      <input
+        type="text"
+        placeholder="Created By"
+        [(ngModel)]="filterPerson"
+        class="p-2 border border-gray-300 rounded"
+      />
+      <!-- Filter by Manager -->
+      <input
+        type="text"
+        placeholder="Manager"
+        [(ngModel)]="filterManager"
+        class="p-2 border border-gray-300 rounded"
+      />
+    </div>
+    <div class="flex justify-end space-x-3 mt-4">
+      <button
+        (click)="applyFilters()"
+        mat-button
+        class="bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-full text-white"
+      >
+        Apply Filters
+      </button>
+      <button
+        (click)="clearFilters()"
+        mat-button
+        class="bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-full text-white"
+      >
+        Clear
+      </button>
+    </div>
+  </div>
+
+  <!-- Feedbacks List -->
+  <div *ngIf="loading" class="text-white text-center">Loading...</div>
+  <div
+    *ngIf="!loading && feedbacks.length === 0"
+    class="text-white text-center"
+  >
+    No feedbacks found.
+  </div>
+  <div
+    *ngIf="!loading && feedbacks.length > 0"
+    class="gap-6 grid grid-cols-1 md:grid-cols-2"
+  >
+    <div *ngFor="let feedback of feedbacks">
+      <app-feedback-display [feedback]="feedback"></app-feedback-display>
+    </div>
+  </div>
+</div>

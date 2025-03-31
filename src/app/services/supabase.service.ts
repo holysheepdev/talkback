@@ -40,10 +40,24 @@ export class SupabaseService implements OnInit {
     return this._session;
   }
 
-  async feedbacks(opts: { page?: number; pageSize?: number; userId?: string }) {
+  async feedbacks(opts: {
+    page?: number;
+    pageSize?: number;
+    userId?: string;
+    filterCompany?: string;
+    filterPerson?: string;
+    filterManager?: string;
+  }) {
     let query = this.supabase.from('feedbacks').select();
 
-    let { page, pageSize, userId } = opts;
+    const {
+      page,
+      pageSize,
+      userId,
+      filterCompany,
+      filterPerson,
+      filterManager,
+    } = opts;
 
     if (page !== undefined && pageSize !== undefined) {
       const from = (page - 1) * pageSize;
@@ -51,12 +65,27 @@ export class SupabaseService implements OnInit {
       query = query.range(from, to);
     }
 
-    if (userId !== undefined) query = query.eq('created_by', userId);
+    if (userId !== undefined) {
+      query = query.eq('created_by', userId);
+    }
+
+    if (filterCompany && filterCompany.trim() !== '') {
+      query = query.ilike('company', `%${filterCompany.trim()}%`);
+    }
+
+    if (filterPerson && filterPerson.trim() !== '') {
+      query = query.ilike('created_by', `%${filterPerson.trim()}%`);
+    }
+
+    if (filterManager && filterManager.trim() !== '') {
+      // Assumes that managers is an array field. The 'contains' operator expects an array.
+      query = query.contains('managers', [filterManager.trim()]);
+    }
 
     const { data, error } = await query;
 
     if (error) {
-      // console.error('error', error);
+      console.error('Error fetching feedbacks:', error);
       return null;
     }
     return data;
@@ -81,8 +110,8 @@ export class SupabaseService implements OnInit {
   signIn(email: string) {
     return this.supabase.auth.signInWithOtp({
       email,
-      // options: { emailRedirectTo: window.location.origin + '/talkback' },
-      options: { emailRedirectTo: 'http://localhost:4200/' },
+      options: { emailRedirectTo: window.location.origin + '/talkback' },
+      // options: { emailRedirectTo: 'http://localhost:4200/' },
     });
   }
   signOut() {

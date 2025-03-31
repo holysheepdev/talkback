@@ -55,7 +55,7 @@ export const sampleFeedbacks: Feedback[] = [
 })
 export class HomePageComponent implements OnInit {
   private supabase = inject(SupabaseService);
-
+  isLoggedin = false;
   quote$!: Observable<string>;
 
   // displayQuote: string = 'Hello, {Name}, what a beautiful day!';
@@ -75,8 +75,11 @@ export class HomePageComponent implements OnInit {
       }
       if (!data?.session || !data.session.user) {
         console.warn('No active session found');
+        this.quote$ = of('Log in to get started!');
         return;
       }
+
+      this.isLoggedin = true;
 
       const { user } = data.session;
 
