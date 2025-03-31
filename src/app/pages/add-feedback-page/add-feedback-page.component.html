@@ -1,1 +1,99 @@
-<p>add-feedback-page works!</p>
+<!-- Add feedback page -->
+<div class="flex justify-center items-center bg-background min-h-screen">
+  <form
+    [formGroup]="feedbackForm"
+    (ngSubmit)="submitFeedback()"
+    class="space-y-2 bg-background3/4 shadow-md shadow-pink-50 p-6 border-2 border-neutral-300 rounded-lg w-full max-w-md align-middle"
+  >
+    <h1 class="text-white text-3xl">Submit Feedback</h1>
+    <div>
+      <label for="email" class="block font-medium text-gray-400 text-sm"
+        >Email</label
+      >
+      <input
+        id="email"
+        type="text"
+        [value]="session?.user?.email ?? 'error'"
+        disabled
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <!-- UserName -->
+    <div>
+      <label for="username" class="block font-medium text-gray-400 text-sm"
+        >Username</label
+      >
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <!-- Full name -->
+    <div>
+      <label for="full_name" class="block font-medium text-gray-400 text-sm"
+        >Full Name</label
+      >
+      <input
+        formControlName="full_name"
+        id="full_name"
+        type="text"
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <!-- Company name -->
+    <div>
+      <label for="company" class="block font-medium text-gray-400 text-sm"
+        >Company</label
+      >
+      <input
+        formControlName="company"
+        id="company"
+        type="text"
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <div>
+      <!-- Job title -->
+      <label for="job_title" class="block font-medium text-gray-400 text-sm"
+        >Job Title</label
+      >
+      <input
+        formControlName="job_title"
+        id="job_title"
+        type="text"
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <div>
+      <label for="website" class="block font-medium text-gray-400 text-sm"
+        >Website</label
+      >
+      <input
+        formControlName="website"
+        id="website"
+        type="url"
+        class="block shadow-sm mt-1 px-4 py-2 border border-``` focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-400 sm:text-sm `w3"
+      />
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="flex justify-center bg-transparent hover:bg-gray-950/10 shadow px-4 py-2 border-``` rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full font-medium text-white"
+        [disabled]="loading"
+      >
+        {{ loading ? "Loading ..." : "Update" }}
+      </button>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="flex justify-center bg-gray-700 hover:bg-red-600 shadow-sm px-4 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-full font-medium text-gray-300 text-sm"
+        (click)="signOut()"
+      >
+        Sign Out
+      </button>
+    </div>
+  </form>
+</div>
