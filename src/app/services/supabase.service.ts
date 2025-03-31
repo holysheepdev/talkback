@@ -40,14 +40,18 @@ export class SupabaseService implements OnInit {
     return this._session;
   }
 
-  async feedbacks(page?: number, pageSize?: number) {
+  async feedbacks(opts: { page?: number; pageSize?: number; userId?: string }) {
     let query = this.supabase.from('feedbacks').select();
+
+    let { page, pageSize, userId } = opts;
 
     if (page !== undefined && pageSize !== undefined) {
       const from = (page - 1) * pageSize;
       const to = from + pageSize - 1;
       query = query.range(from, to);
     }
+
+    if (userId !== undefined) query = query.eq('created_by', userId);
 
     const { data, error } = await query;
 
@@ -77,7 +81,8 @@ export class SupabaseService implements OnInit {
   signIn(email: string) {
     return this.supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: window.location.origin + '/talkback' },
+      // options: { emailRedirectTo: window.location.origin + '/talkback' },
+      options: { emailRedirectTo: 'http://localhost:4200/' },
     });
   }
   signOut() {
@@ -108,5 +113,25 @@ export class SupabaseService implements OnInit {
       access_token: accessToken,
       refresh_token: refreshToken,
     });
+  }
+
+  async insertFeedback(feedback: Feedback): Promise<Feedback | null> {
+    const update = {
+      ...feedback,
+      // created_by: this.session?.user.id,
+      // created_at: new Date(),
+    };
+
+    const { data, error } = await this.supabase
+      .from('feedbacks')
+      .insert(feedback)
+      .select();
+
+    if (error || !data || data.length === 0) {
+      console.error('Error inserting feedback:', error);
+      return null;
+    }
+
+    return data[0] as Feedback;
   }
 }

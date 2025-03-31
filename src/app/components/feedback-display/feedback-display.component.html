@@ -6,7 +6,7 @@
 >
   <div class="px-6 py-4">
     <h2 class="mb-2 font-bold text-gray-800 text-xl">{{ feedback?.title }}</h2>
-    <p class="mb-4 text-gray-600 text-sm">{{ feedback?.description }}</p>
+    <p class="mb-4 text-gray-600 text-sm">{{ feedback?.feedback }}</p>
     <div class="text-gray-500 text-sm">
       <p><span class="font-semibold">Company:</span> {{ feedback?.company }}</p>
       <p>
@@ -17,10 +17,17 @@
         <span class="font-semibold">Created At:</span>
         {{ feedback?.created_at }}
       </p>
+      @if(feedback?.anonymous === true) {
+      <p>
+        <span class="font-semibold">Anonymous:</span>
+        {{ feedback?.anonymous }}
+      </p>
+      } @else {
       <p>
         <span class="font-semibold">Created By:</span>
         {{ feedback?.created_by }}
       </p>
+      }
     </div>
   </div>
 </div>

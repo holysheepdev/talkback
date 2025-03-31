@@ -1,15 +1,42 @@
-<!-- Add feedback page -->
 <div class="flex justify-center items-center bg-background w-full min-h-screen">
   <form
     [formGroup]="feedbackForm"
     (ngSubmit)="submitFeedback()"
-    class="space-y-2 bg-background3/4 shadow-md shadow-pink-50 p-4 border-2 border-neutral-300 rounded-lg w-full max-w-2/3 align-middle"
+    class="space-y-4 bg-background3/4 shadow-md shadow-pink-50 p-4 border-2 border-neutral-300 rounded-lg w-full max-w-2/3"
   >
-    <h1 class="text-white text-3xl">Submit Feedback</h1>
+    <h1 class="text-white text-3xl text-center">Submit Feedback</h1>
 
-    <!-- Stay anonymous -->
+    <!-- Step 1: Title, Feedback, Stay Anonymous -->
+    @if (currentStep === 1) {
+    <div>
+      <label for="title" class="block font-medium text-gray-300 text-sm"
+        >Title</label
+      >
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        required
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+
+    <div>
+      <label for="feedback" class="block font-medium text-gray-300 text-sm"
+        >Feedback</label
+      >
+      <textarea
+        id="feedback"
+        formControlName="feedback"
+        required
+        rows="4"
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm"
+      ></textarea>
+    </div>
+
     <div class="flex items-center">
       <input
+        id="anonymous"
         type="checkbox"
         formControlName="anonymous"
         class="mr-2 border-gray-300 rounded focus:ring-blue-500 text-blue-500"
@@ -19,58 +46,78 @@
       >
     </div>
 
-    <!-- Company name -->
-    <div>
-      <label for="company" class="block font-medium text-gray-300 text-sm"
-        >Company</label
-      >
-      <input
-        formControlName="company"
-        id="company"
-        type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
-      />
-    </div>
-    <div>
-      <!-- Job title -->
-      <label for="job_title" class="block font-medium text-gray-300 text-sm"
-        >Job Title</label
-      >
-      <input
-        formControlName="job_title"
-        id="job_title"
-        type="text"
-        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
-      />
-    </div>
-    <div>
-      <label for="website" class="block font-medium text-gray-300 text-sm"
-        >Website</label
-      >
-      <input
-        formControlName="website"
-        id="website"
-        type="url"
-        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm `w3"
-      />
-    </div>
-    <div>
-      <button
-        type="submit"
-        class="flex justify-center bg-transparent hover:bg-gray-950/10 shadow px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full font-medium text-white"
-        [disabled]="loading"
-      >
-        {{ loading ? "Loading ..." : "Update" }}
-      </button>
-    </div>
-    <div>
+    <div class="flex justify-end">
       <button
         type="button"
-        class="flex justify-center bg-gray-700 hover:bg-red-600 shadow-sm px-4 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-full font-medium text-gray-300 text-sm"
-        (click)="signOut()"
+        (click)="nextStep()"
+        class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-medium text-white"
       >
-        Sign Out
+        Next
       </button>
     </div>
+    }
+
+    <!-- Step 2: Company Name and Managers -->
+    @if (currentStep === 2) {
+    <div>
+      <label for="company" class="block font-medium text-gray-300 text-sm"
+        >Company Name</label
+      >
+      <input
+        id="company"
+        type="text"
+        formControlName="company"
+        required
+        class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm"
+      />
+    </div>
+
+    <div formArrayName="managers">
+      <label class="block mb-1 font-medium text-gray-300 text-sm"
+        >Managers</label
+      >
+      @for (manager of managers.controls; track $index) {
+      <div class="flex items-center mb-2">
+        <input
+          [formControlName]="$index"
+          type="text"
+          placeholder="Manager Name"
+          required
+          class="block shadow-sm mt-1 px-4 py-2 border focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-gray-300 sm:text-sm"
+        />
+        <button
+          type="button"
+          (click)="removeManager($index)"
+          class="ml-2 text-red-500 hover:text-red-600"
+        >
+          Remove
+        </button>
+      </div>
+      }
+      <button
+        type="button"
+        (click)="addManager()"
+        class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded font-medium text-white"
+      >
+        Add Manager
+      </button>
+    </div>
+
+    <div class="flex justify-between">
+      <button
+        type="button"
+        (click)="prevStep()"
+        class="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded font-medium text-white"
+      >
+        Previous
+      </button>
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-medium text-white"
+      >
+        Submit Feedback
+      </button>
+    </div>
+    }
   </form>
 </div>

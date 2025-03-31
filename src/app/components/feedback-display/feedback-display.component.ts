@@ -4,7 +4,7 @@ import { Feedback } from '../../model/Feedback';
 const sampleFeedback: Feedback = {
   id: '1',
   title: 'Improved Team Collaboration',
-  description:
+  feedback:
     'The new project management tool has significantly improved team collaboration and productivity.',
   company: 'Tech Innovators Inc.',
   managers: ['Alice Johnson', 'Bob Smith'],
@@ -22,8 +22,8 @@ export class FeedbackDisplayComponent implements OnInit {
   @Input() feedback: Feedback | undefined;
 
   ngOnInit(): void {
-    if (!this.feedback) {
-      this.feedback = sampleFeedback;
-    }
+    // if (!this.feedback) {
+    // this.feedback = sampleFeedback;
+    // }
   }
 }

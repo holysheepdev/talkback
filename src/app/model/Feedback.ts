@@ -1,10 +1,11 @@
 export interface Feedback {
-  id: string;
+  id?: string;
   title?: string;
-  description?: string;
+  managers?: string[];
+  feedback?: string;
   company?: string;
   department?: string;
-  managers?: string[];
   created_at?: string;
   created_by?: string;
+  anonymous?: boolean;
 }
